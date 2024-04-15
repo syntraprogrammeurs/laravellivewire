@@ -7,19 +7,37 @@
         <form wire:submit="save" class="space-y-6" action="#" method="POST">
             <div><label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                 <div class="mt-2">
-                    <input wire:model="name" id="name" name="name" type="text" autocomplete="name" required
-                           class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1                    ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <input
+                        wire:model.blur="form.name" id="name" name="name" type="text" autocomplete="name"
+                    @class(['block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
+                        'ring-gray-300'=>$errors->missing('form.name'),
+                        'ring-red-500'=>$errors->has('form.name')])
+                    >
+                    @error('form.name')
+                    <p class="text-sm text-red-500">{{$message}}</p>
+                    @enderror
+
                 </div>
             </div>
             <div><label for="content" class="block text-sm font-medium leading-6 text-gray-900">Content</label>
-                <div class="mt-2"><textarea wire:model="content" rows="4" name="content" id="content"
+                <div class="mt-2"><textarea wire:model="form.content" rows="4" name="content" id="content"
                                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300                    placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             placeholder=" Content"></textarea></div>
+            </div>
+            <div><label for="content" class="block text-sm font-medium leading-6 text-gray-900">Email?</label>
+                <div class="flex gap-6">
+                    <label class="flex items-center gap-2">
+                        <input type="radio" name="emails" class="accent-pink-300 focus:accent-pink-500 size-4">Yes
+                    </label>
+                    <label class="flex items-center gap-2">
+                        <input type="radio" name="emails" class="accent-pink-300 focus:accent-pink-500 size-4">No
+                    </label>
+                </div>
             </div>
             <div>
                 <button type="submit"
                         class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150 disabled:cursor-not-allowed">
-                    <svg wire:loading class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    <svg wire:loading wire:target="save" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
                          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                                 stroke-width="4"></circle>
