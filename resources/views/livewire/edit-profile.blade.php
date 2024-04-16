@@ -5,17 +5,73 @@
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm p-6 shadow-2xl rounded-2xl"><h2
             class="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Edit Profile</h2>
         <form wire:submit="save" class="space-y-6" action="#" method="POST">
-            <div><label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+            <div><label for="form.name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                 <div class="mt-2">
-                    <input wire:model="name" id="name" name="name" type="text" autocomplete="name" required
-                           class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1                    ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <input wire:model.blur="form.name" id="name" name="name" type="text" autocomplete="name"
+                    @class(['block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1                    ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
+                         'ring-gray-300'=>$errors->missing('form.name'),
+                         'ring-red-500'=>$errors->has('form.name'),
+                         ])
+                    @error('form.name')
+                    <p class="text-sm text-red-500">{{$message}}</p>
+                    @enderror
+
                 </div>
+
             </div>
-            <div><label for="content" class="block text-sm font-medium leading-6 text-gray-900">Content</label>
-                <div class="mt-2"><textarea wire:model="content" rows="4" name="content" id="content"
+            <div><label for="form.content" class="block text-sm font-medium leading-6 text-gray-900">Content</label>
+                <div class="mt-2"><textarea wire:model="form.content" rows="4" name="content" id="content"
                                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300                    placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             placeholder=" Content"></textarea></div>
             </div>
+            <div><label for="emails" class="block text-sm font-medium leading-6 text-gray-900">Email?</label>
+                <div class="flex gap-6"><label class="flex items-center gap-2">
+                        <input wire:model.boolean="form.emails"
+                               type="radio" name="emails"
+                               value="true" class="size-4">Yes
+                    </label> <label class="flex items-center gap-2">
+                        <input wire:model.boolean="form.emails"
+                               type="radio" name="emails" value="false"
+                               class="size-4">No </label></div>
+            </div>
+            <div x-show="$wire.form.emails">
+                <label for="choice" class="block text-sm font-medium leading-6 text-gray-900">Choices?</label>
+                <div class="flex gap-6"><label class="flex items-center gap-2">
+                        <input
+                            wire:model.boolean="form.newsletter" type="checkbox" name="newsletter"
+                            class="size-4 rounded">Newsletter </label>
+                    <label class="flex items-center gap-2">
+                        <input
+                            wire:model.boolean="form.marketing" type="checkbox" name="marketing" class="size-4 rounded">Marketing
+                    </label>
+                </div>
+            </div>
+            <div><label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
+                <div class="mt-2">
+                    <select wire:model.blur="form.country" id="country" name="country" type="text"
+                                          autocomplete="country" @class(['block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',                'ring-gray-300'=>$errors->missing('form.country'),                'ring-red-500'=>$errors->has('form.country')])
+                    @error('form.country')
+                    <p class="text-sm text-red-500">{{$message}}</p>
+                    @enderror >
+                    <option value="" selected disabled>Choose your country</option>
+                    <option value="Belgium">Belgium</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="USA">USA</option>
+                    <option value="Germany">Germany</option>
+                    </select>    </div>
+            </div>
+            <!-- Toggle Switch for Toggle Status -->
+{{--            <div class="flex items-center justify-between my-4">--}}
+{{--                <span class="text-sm font-medium text-gray-700">Gender</span>--}}
+{{--                <label for="toggleSwitch" class="inline-flex relative items-center cursor-pointer">--}}
+{{--                    <input type="checkbox" id="toggleSwitch" class="sr-only" wire:model="form.toggleSwitch">--}}
+{{--                    <div class="block bg-gray-200 w-14 h-8 rounded-full"></div>--}}
+{{--                    <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition-transform duration-300 ease-in-out" :class="{'translate-x-6': form.toggleSwitch, 'bg-pink-500': form.toggleSwitch, 'bg-blue-500': !form.toggleSwitch}"></div>--}}
+{{--                </label>--}}
+{{--            </div>--}}
+
+
+
             <div>
                 <button type="submit"
                         class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150 disabled:cursor-not-allowed">
