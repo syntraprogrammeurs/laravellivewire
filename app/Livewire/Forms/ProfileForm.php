@@ -19,6 +19,8 @@ class ProfileForm extends Form
     public $marketing = false;
     public $country = '';
 
+    public $gender=false;
+
     public function rules(){
         return[
             'name'=>[
@@ -36,6 +38,7 @@ class ProfileForm extends Form
         $this->newsletter= $this->user->newsletter;
         $this->marketing= $this->user->marketing;
         $this->country= $this->user->country;
+        $this->gender= $this->user->gender;
     }
     public function update(){
         $this->validate();
@@ -44,6 +47,7 @@ class ProfileForm extends Form
         $this->user->newsletter = $this->newsletter;
         $this->user->marketing = $this->marketing;
         $this->user->country = $this->country;
+        $this->user->gender = $this->gender;
         $this->user->save();
     }
 }
