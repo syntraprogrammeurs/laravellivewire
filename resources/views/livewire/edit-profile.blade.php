@@ -64,6 +64,36 @@
                     </label>
                 </div>
             </div>
+            <div class="flex justify-between items-center pt-4">
+                <div class="flex justify-start items-center gap-2 text-sm">
+                    <input type="checkbox" class="border">
+                    <span>I agree to the</span>
+
+                    <x-modal wire:model="showModal">
+                        <x-modal.button>
+                            <button type="button" class="underline text-blue-500">
+                                terms of service
+                            </button>
+                            <button wire:click="openModal" type="button" class="underline text-blue-500">
+                                terms of service2
+                            </button>
+                        </x-modal.button>
+                        <x-modal.panel>
+                            <h2 class="text-2xl font-bold text-slate-900">Terms Of Service</h2>
+
+                            <div class="mt-5 text-gray-600">
+                                <h3 class="font-bold text-lg text-slate-800 mt-4">Acceptance of Terms</h3>
+                                <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad architecto blanditiis delectus dolores eius eveniet impedit ipsa itaque labore, maiores nemo numquam placeat porro quod vitae voluptatem! Nulla, vero!</p>
+
+                                <h3 class="font-bold text-lg text-slate-800 mt-4">Changes to Terms</h3>
+                                <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium blanditiis eos fuga fugit maxime officiis perferendis sapiente voluptates voluptatum! Consectetur dolor facere libero nobis recusandae saepe sapiente, ut. Dolor, quisquam.</p>
+                            </div>
+                        </x-modal.panel>
+                    </x-modal>
+
+
+                    </div>
+                </div>
             <div>
                 <button type="submit"
                         class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150 disabled:cursor-not-allowed">
@@ -78,6 +108,7 @@
                 </button>
 
             </div>
+
         </form>
         {{--        @if($showSuccess)--}}
         {{--            <div class="flex justify-end gap-2 items-center text-indigo-500 text-sm font-medium"> Profile updated!--}}

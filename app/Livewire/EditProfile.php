@@ -14,6 +14,10 @@ class EditProfile extends Component
     public ProfileForm $form;
     public $showSuccess = false;
 
+    public $showModal = false;
+    public function openModal(){
+        $this->showModal=true;
+    }
 
     public function mount(){
        $this->form->setUser(User::where('id',1)->first());
