@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->text('content');
+            $table->boolean('emails')->default(0);
+            $table->boolean('newsletter')->default(0);
+            $table->boolean('marketing')->default(0);
+            $table->string('country')->default('');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

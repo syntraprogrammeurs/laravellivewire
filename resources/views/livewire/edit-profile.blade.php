@@ -24,13 +24,43 @@
                                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300                    placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             placeholder=" Content"></textarea></div>
             </div>
-            <div><label for="content" class="block text-sm font-medium leading-6 text-gray-900">Email?</label>
+            <div><label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
+                <div class="mt-2">
+                    <select
+                        wire:model.blur="form.country" id="country" name="country" type="text" autocomplete="country"
+                        @class(['block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
+                            'ring-gray-300'=>$errors->missing('form.country'),
+                            'ring-red-500'=>$errors->has('form.country')])
+
+                        @error('form.country')
+                        <p class="text-sm text-red-500">{{$message}}</p>
+                        @enderror
+                    >
+                    <option value="" selected disabled>Choose your country</option>
+                    <option value="Belgium">Belgium</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="USA">USA</option>
+                    <option value="Germany">Germany</option>
+                    </select>
+                </div>
+            </div>
+            <div><label for="emails" class="block text-sm font-medium leading-6 text-gray-900">Email?</label>
                 <div class="flex gap-6">
                     <label class="flex items-center gap-2">
-                        <input type="radio" name="emails" class="accent-pink-300 focus:accent-pink-500 size-4">Yes
+                        <input wire:model.boolean="form.emails" type="radio" name="emails" value="true" class="size-4">Yes
                     </label>
                     <label class="flex items-center gap-2">
-                        <input type="radio" name="emails" class="accent-pink-300 focus:accent-pink-500 size-4">No
+                        <input  wire:model.boolean="form.emails" type="radio" name="emails" value="false" class="size-4">No
+                    </label>
+                </div>
+            </div>
+            <div x-show="$wire.form.emails"><label for="choice" class="block text-sm font-medium leading-6 text-gray-900">Choices?</label>
+                <div class="flex gap-6">
+                    <label class="flex items-center gap-2">
+                        <input wire:model.boolean="form.newsletter" type="checkbox" name="newsletter"  class="size-4 rounded">Newsletter
+                    </label>
+                    <label class="flex items-center gap-2">
+                        <input  wire:model.boolean="form.marketing" type="checkbox" name="marketing"  class="size-4 rounded">Marketing
                     </label>
                 </div>
             </div>

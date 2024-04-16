@@ -21,6 +21,7 @@ class User extends Authenticatable
         'email',
         'content',
         'password',
+        'country'
     ];
 
     /**
@@ -43,6 +44,9 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'emails'=> 'boolean',
+            'newsletter'=>'boolean',
+            'marketing'=>'boolean'
         ];
     }
 }
