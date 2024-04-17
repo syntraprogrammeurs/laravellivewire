@@ -50,45 +50,77 @@
                         <input wire:model.boolean="form.emails" type="radio" name="emails" value="true" class="size-4">Yes
                     </label>
                     <label class="flex items-center gap-2">
-                        <input  wire:model.boolean="form.emails" type="radio" name="emails" value="false" class="size-4">No
+                        <input wire:model.boolean="form.emails" type="radio" name="emails" value="false" class="size-4">No
                     </label>
                 </div>
             </div>
-            <div x-show="$wire.form.emails"><label for="choice" class="block text-sm font-medium leading-6 text-gray-900">Choices?</label>
+            <div x-show="$wire.form.emails"><label for="choice"
+                                                   class="block text-sm font-medium leading-6 text-gray-900">Choices?</label>
                 <div class="flex gap-6">
                     <label class="flex items-center gap-2">
-                        <input wire:model.boolean="form.newsletter" type="checkbox" name="newsletter"  class="size-4 rounded">Newsletter
+                        <input wire:model.boolean="form.newsletter" type="checkbox" name="newsletter"
+                               class="size-4 rounded">Newsletter
                     </label>
                     <label class="flex items-center gap-2">
-                        <input  wire:model.boolean="form.marketing" type="checkbox" name="marketing"  class="size-4 rounded">Marketing
+                        <input wire:model.boolean="form.marketing" type="checkbox" name="marketing"
+                               class="size-4 rounded">Marketing
                     </label>
                 </div>
             </div>
             <div class="flex items-center justify-between my-4">
                     <span class="text-sm font-medium text-gray-700">
                         Gender: {{$form->gender ? 'Female': 'Male'}}</span>
-                    </span>
+                </span>
 
                 <label class="inline-flex items-center cursor-pointer">
                     <input wire:model.boolean="form.gender" wire:change="$refresh" type="checkbox" class="sr-only peer">
-                    <div class="relative w-11 h-6 bg-blue-600 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-blue-500 peer-checked:bg-pink-600 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600"></div>
+                    <div
+                        class="relative w-11 h-6 bg-blue-600 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-blue-500 peer-checked:bg-pink-600 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600"></div>
                 </label>
             </div>
-
+                <x-modal wire:model="showModal">
+                    <x-modal.button>
+                        <button type="button" class="underline text-blue-500">
+                            terms of service
+                        </button>
+                        <button wire:click="openModal" type="button" class="underline text-blue-500">
+                            terms of service2
+                        </button>
+                    </x-modal.button>
+                    <x-modal.panel>
+                        <h2 class="text-2xl font-bold text-slate-900">Terms Of Service</h2>
+                        <div class="mt-5 text-gray-600">
+                            <h3
+                                class="font-bold text-lg text-slate-800 mt-4">Acceptance of Terms</h3>
+                            <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Accusantium ad architecto blanditiis delectus dolores eius eveniet
+                                impedit ipsa itaque labore, maiores nemo numquam placeat porro quod
+                                vitae voluptatem! Nulla, vero!</p>
+                            <h3 class="font-bold text-lg text-slate-800 mt-4">Changes to Terms</h3>
+                            <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Accusantium blanditiis eos fuga fugit maxime officiis perferendis
+                                sapiente voluptates voluptatum! Consectetur dolor facere libero nobis
+                                recusandae saepe sapiente, ut. Dolor, quisquam.</p>
+                        </div>
+                    </x-modal.panel>
+                </x-modal>
             <div>
-                <button type="submit"
-                        class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150 disabled:cursor-not-allowed">
-                    <svg wire:loading wire:target="save" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor"
-                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Save
-                </button>
 
-            </div>
+                <div>
+                    <button type="submit"
+                            class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150 disabled:cursor-not-allowed">
+                        <svg wire:loading wire:target="save" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Save
+                    </button>
+
+                </div>
+
         </form>
         {{--        @if($showSuccess)--}}
         {{--            <div class="flex justify-end gap-2 items-center text-indigo-500 text-sm font-medium"> Profile updated!--}}
