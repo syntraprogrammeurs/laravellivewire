@@ -46,7 +46,7 @@
                         <a wire:navigate href="/counter" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Counter</a>
                         <a wire:navigate href="/posts" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Posts</a>
                         <a wire:navigate href="/postcreate" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Create Post</a>
-                        <a wire:navigate href="/cdialog" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500
+
                         hover:border-gray-300 hover:text-gray-700">Livewire posts dialog</a>
                     </div>
                 </div>
